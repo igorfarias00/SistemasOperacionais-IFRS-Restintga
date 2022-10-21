@@ -4,6 +4,7 @@ public class Main {
         // menu - 1 - tipo de algoritmo da fila de processos
         int opc = 1;
 
+
         do {
 
         } while(opc != 0);
