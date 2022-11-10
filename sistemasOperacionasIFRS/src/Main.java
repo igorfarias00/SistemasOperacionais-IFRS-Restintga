@@ -90,7 +90,7 @@ public class Main {
             }
             opc = 0;
             for(int i = 0; i < processes.size(); i++){
-                System.out.println(processes.get(i).waitingTime);
+                System.out.println(processes.get(i).execution);
             }
         } while(opc > 0);
     }

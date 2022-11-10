@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Process {
     BufferedReader tcl = new BufferedReader(new InputStreamReader(System.in));
+    public int execution;
     public int waitingTime;     // criar metodo para definir um valor aleatoriamente e manualmente
     public int id;
     public int priority;
@@ -13,9 +14,9 @@ public class Process {
 
     public Process(boolean randomico) throws IOException {
         if (randomico == true) {
-            this.waitingTime = generator.nextInt(1, 12);
+            this.execution = generator.nextInt(1, 12);
         } else {
-            this.waitingTime = Integer.parseInt(tcl.readLine());
+            this.execution = Integer.parseInt(tcl.readLine());
         }
     }
 
