@@ -6,8 +6,9 @@ public class Sjf {
     int arival;
     int processesExecution;
     int averageWaitingTime;
+    int next;
     int j = 0;
-    int i;
+    int i,k;
 
 
 
@@ -25,11 +26,15 @@ public class Sjf {
                 System.out.println(i + ": Processo p"+ (j + 1));       // imprime o passo atual de execução
 
             } else {                                                   // se chegou ao fim da execução do processo
-                j++;                                                   //
+                j++;
+                for(k = j; k < (processes.size()-1); j++){
+                    if (processes.get(k).execution < processes.get(k+1).execution){
+                        next = k;
+                    }
+                }
 
-
-                processesExecution += processes.get(j).execution;      // soma ao tempo de execução, o tempo do proximo processo
-                averageWaitingTime += processes.get(j).execution;      // soma ao tempo total de execução para o calculo da média
+                processesExecution += processes.get(next).execution;      // soma ao tempo de execução, o tempo do proximo processo
+                averageWaitingTime += processes.get(next).execution;      // soma ao tempo total de execução para o calculo da média
 
                 System.out.println(i + ": Processo p" + (j + 1));       // imprime o passo atual de execução
 
