@@ -26,16 +26,7 @@ public class Sjf {
 
             } else {                                                   // se chegou ao fim da execução do processo
                 j++;                                                   //
-                if(processes.get(j).arrivalTime > i){
-                    do {
-                        System.out.println(i + ": ---- Empty ----  ");
-                        processesExecution++;                          // adiciona o tempo ocioso para as variaveis de controle
-                        averageWaitingTime++;                          // adiciona o tempo ocioso para as variaveis de controle
-                        tBurst++;                                      // adiciona o tempo ocioso para as variaveis de controle
-                        i++;
-                    } while (processes.get(j).arrivalTime > i);
 
-                }
 
                 processesExecution += processes.get(j).execution;      // soma ao tempo de execução, o tempo do proximo processo
                 averageWaitingTime += processes.get(j).execution;      // soma ao tempo total de execução para o calculo da média
