@@ -6,7 +6,8 @@ import java.util.Random;
 public class Process {
     BufferedReader tcl = new BufferedReader(new InputStreamReader(System.in));
     public int execution;
-    public int waitingTime;     // criar metodo para definir um valor aleatoriamente e manualmente
+    public int arrivalTime;
+    public int waitingTime;
     public int id;
     public int priority;
 

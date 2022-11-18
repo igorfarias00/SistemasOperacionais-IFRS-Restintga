@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /*
@@ -54,7 +55,7 @@ public class Main {
 
                         // SJF
                         case 2:
-                            System.out.println("ainda não implementado");
+                            Sjf sjf = new Sjf(processes);
                             break;
 
                         // SJF P
@@ -91,6 +92,7 @@ public class Main {
             opc = 0;
             for(int i = 0; i < processes.size(); i++){
                 System.out.println(processes.get(i).execution);
+                System.out.println(processes.get(i).arrivalTime);
             }
         } while(opc > 0);
     }
@@ -119,15 +121,24 @@ public class Main {
     }
 
     public static void populateProcesses(int opc, int processNum) throws IOException {
+        Random generator = new Random();
+        BufferedReader tcl = new BufferedReader(new InputStreamReader(System.in));
 
         if (opc == 1) {                                     // opção para popular o arraylist com a quantidade selecionada
             for (int i = 0; i < processNum; i++) {          // de forma aleatoria
                 processes.add(new Process(true));
+                if(processes.size() == 1){
+                    processes.get(0).arrivalTime = 0;
+                } else {
+                    processes.get(i).arrivalTime = generator.nextInt((processes.get(i-1).arrivalTime+1), (processes.get(i).execution+4));
+                }
             }
         } else if (opc == 2) {                              // opção para popular o arraylist com a quantidade seleciona
             for (int i = 0; i < processNum; i++) {          // de forma manual
                 System.out.println("Digite o tempo de execução do processo ( p" + (i + 1) + " ): ");
                 processes.add(new Process(false));
+                System.out.println("Digite o tempo de chegada desse processo: ");
+                processes.get(i).arrivalTime = Integer.parseInt(tcl.readLine());
             }
         }
     }

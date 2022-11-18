@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Fcfs {
     ArrayList<Process> process  = new ArrayList<>();
-    int executionTime = 0;
+    int executionTime = 0; // tBurst
     int processesExecution;
     int averageWaitingTime;
     int j = 0;
