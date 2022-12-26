@@ -8,6 +8,8 @@ public class Fcfs {
     int processesExecution;
     int averageWaitingTime;
     int j = 0;
+    
+    
     public Fcfs(ArrayList<Process> processes)  {
         processesExecution = processes.get(0).execution;
         averageWaitingTime = 0;
@@ -18,7 +20,7 @@ public class Fcfs {
         }
 
         //System.out.println(processes.size());
-        //System.out.println(executionTime);
+        //System.out.println(executionTime);						// j funciona como um laço interno para selecionar o proximo 
         ;
         for(int i = 0; i < executionTime; i++){
             if(i < processesExecution){                                // se não chegou ao fim do tempo de execução do processo
@@ -31,11 +33,11 @@ public class Fcfs {
                 System.out.println(i + ": Processo p"+ (j + 1));       // imprime o passo atual de execução
             }
 
-            if(i == (executionTime - 1)){   // se o laço chegou ao ultimo processo,
-                averageWaitingTime /= j;    // realiza o calculo da média
-            }
         }
 
+        averageWaitingTime /= processes.size();    // realiza o calculo da média
+        
+        
         System.out.println("Tempo médio de espera: " + averageWaitingTime);
 
     }
