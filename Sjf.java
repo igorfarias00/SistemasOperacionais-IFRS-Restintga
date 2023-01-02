@@ -1,48 +1,69 @@
 import java.util.ArrayList;
 
 public class Sjf {
-
+	int processesSize;
+	int executionTime;
     int tBurst = 0;
     int arival;
     int processesExecution;
     int averageWaitingTime;
-    int next;
-    int j = 0;
-    int i,k;
+    int j = 0, p = 0;
+    int smallerPosition = 0;
+    int smaller = 0;
 
-
+    
 
     public Sjf(ArrayList<Process> processes){
-        processesExecution = processes.get(0).execution;
-
-        for(i = 0; i< processes.size(); i++){
-            tBurst += processes.get(i).execution;
-
+    	processesExecution = processes.get(0).execution;
+    	averageWaitingTime = 0;
+    	
+    	processesSize = processes.size();
+        for(int i = 0; i < processes.size(); i++){
+            executionTime += processes.get(i).execution;
+            //System.out.println("processo "+ (i + 1)+ ": " + processes.get(i).waitingTime);
         }
-
-        //1 - 0  / 1 - 1 / 2 - 3 / 2 -6
-        for(i = 0; i < tBurst; i++){
+        
+        for(int i = 0; i < executionTime; i++){
             if(i < processesExecution){                                // se não chegou ao fim do tempo de execução do processo
-                System.out.println(i + ": Processo p"+ (j + 1));       // imprime o passo atual de execução
+                System.out.println(i + ": Processo p"+ (p + 1));       // imprime o passo atual de execução
+            } else {                                                   // se chegou ao proximo processo
+            	if(processes.size() > 1) {
+            		processes.remove(smallerPosition);
+					  
+                	for(j = 0; j < processes.size(); j++) {
+                		if(processes.get(j).execution > smaller) {
+                			smallerPosition = j;
+                			smaller = processes.get(j).execution;
+                		}
+                	}
+            		
+            		processesExecution += processes.get(smallerPosition).execution;      // soma ao tempo de execução, o tempo do proximo processo
+            		averageWaitingTime += processes.get(smallerPosition).execution;      // soma ao tempo total de execução para o calculo da média
 
-            } else {                                                   // se chegou ao fim da execução do processo
-                j++;
-                for(k = j; k < (processes.size()-1); j++){
-                    if (processes.get(k).execution < processes.get(k+1).execution){
-                        next = k;
-                    }
-                }
+            		System.out.println(i + ": Processo p"+ (p + 1));       // imprime o passo atual de execução
+            		p++;
+            	} else {
+            		processes.remove(0);
+					  
+            		processesExecution += processes.get(0).execution;      // soma ao tempo de execução, o tempo do proximo processo
+            		averageWaitingTime += processes.get(0).execution;      // soma ao tempo total de execução para o calculo da média
 
-                processesExecution += processes.get(next).execution;      // soma ao tempo de execução, o tempo do proximo processo
-                averageWaitingTime += processes.get(next).execution;      // soma ao tempo total de execução para o calculo da média
-
-                System.out.println(i + ": Processo p" + (j + 1));       // imprime o passo atual de execução
+            		System.out.println(i + ": Processo p"+ (p + 1));       // imprime o passo atual de execução
+            		p++;
+            		
+            	}
+	
 
             }
-
-            if(i == (tBurst - 1)){   // se o laço chegou ao ultimo processo,
-                averageWaitingTime /= j;    // realiza o calculo da média
-            }
+            
         }
+        
+      
+        averageWaitingTime /= processesSize;    // realiza o calculo da média
+        
+        
+        System.out.println("Tempo médio de espera: " + averageWaitingTime);
+
+    	
     }
 }

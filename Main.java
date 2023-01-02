@@ -130,7 +130,7 @@ public class Main {
                 if(processes.size() == 1){
                     processes.get(0).arrivalTime = 0;
                 } else {
-                    processes.get(i).arrivalTime = generator.nextInt((processes.get(i-1).arrivalTime+1), (processes.get(i).execution+4));
+                    processes.get(i).arrivalTime = generator.nextInt((processes.get(i-1).arrivalTime+1), (processes.get(i-1).arrivalTime+1) +(processes.get(i).execution+4));
                 }
             }
         } else if (opc == 2) {                              // opção para popular o arraylist com a quantidade seleciona
