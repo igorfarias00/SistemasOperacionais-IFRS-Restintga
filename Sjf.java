@@ -94,7 +94,7 @@ public class Sjf {
             		
             		idle = 0;
             		
-            		System.out.println(i + ": Processo p"+ temporary.get(p).id);       // imprime o passo atual de execução
+            		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
             
             		
             	}

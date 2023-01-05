@@ -142,7 +142,7 @@ public class Main {
                 if(processes.size() == 1){
                     processes.get(0).arrivalTime = 0;
                 } else {
-                    processes.get(i).arrivalTime = generator.nextInt(0,20);
+                    processes.get(i).arrivalTime = generator.nextInt(0,50);			// gera o tempo de chegada aleatoriamente
                 }
             }
         } else if (opc == 2) {                              // opção para popular o arraylist com a quantidade seleciona
