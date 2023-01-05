@@ -13,12 +13,14 @@ public class Process {
 
     Random generator = new Random();
 
-    public Process(boolean randomico) throws IOException {
+    public Process(boolean randomico, int id) throws IOException {
         if (randomico == true) {
             this.execution = generator.nextInt(1, 12);
         } else {
             this.execution = Integer.parseInt(tcl.readLine());
         }
+        
+        this.id = id;
     }
 
 }

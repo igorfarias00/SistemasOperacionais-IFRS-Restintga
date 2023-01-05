@@ -126,7 +126,7 @@ public class Main {
 
         if (opc == 1) {                                     // opção para popular o arraylist com a quantidade selecionada
             for (int i = 0; i < processNum; i++) {          // de forma aleatoria
-                processes.add(new Process(true));
+                processes.add(new Process(true, (i+1)));
                 if(processes.size() == 1){
                     processes.get(0).arrivalTime = 0;
                 } else {
@@ -136,7 +136,7 @@ public class Main {
         } else if (opc == 2) {                              // opção para popular o arraylist com a quantidade seleciona
             for (int i = 0; i < processNum; i++) {          // de forma manual
                 System.out.println("Digite o tempo de execução do processo ( p" + (i + 1) + " ): ");
-                processes.add(new Process(false));
+                processes.add(new Process(false, (i+1)));
                 System.out.println("Digite o tempo de chegada desse processo: ");
                 processes.get(i).arrivalTime = Integer.parseInt(tcl.readLine());
             }
