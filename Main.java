@@ -142,7 +142,7 @@ public class Main {
                 if(processes.size() == 1){
                     processes.get(0).arrivalTime = 0;
                 } else {
-                    processes.get(i).arrivalTime = generator.nextInt((processes.get(i-1).arrivalTime+1), (processes.get(i-1).arrivalTime+1) +(processes.get(i).execution+4));
+                    processes.get(i).arrivalTime = generator.nextInt(0,20);
                 }
             }
         } else if (opc == 2) {                              // opção para popular o arraylist com a quantidade seleciona
@@ -174,6 +174,7 @@ public class Main {
     	for(int i = 0; i < processes.size(); i++ ) {
     		System.out.println("tempo de chegada do processo " + processes.get(i).id +": "+processes.get(i).arrivalTime);
     		System.out.println("execução do processo " + processes.get(i).id +":         "+processes.get(i).execution);
+    		System.out.println("----------------------------------------------------------------------------------");
     	}
     }
 

@@ -47,13 +47,13 @@ public class Sjf {
                 		if(j == 0) {												// se for o primeiro elemento, assume ele como menor
                 			smallerPosition = j;
                 			smaller = temporary.get(j).execution;
-                		} else if(temporary.get(j).execution < smaller) {			// se não for o primeiro, compara para verificar se é menor
+                		} else if(temporary.get(j).execution < smaller && temporary.get(j).arrivalTime <= i) {			// se não for o primeiro, compara para verificar se é menor
                 			smallerPosition = j;									// salva a posição
                 			smaller = temporary.get(j).execution;					// e o menor valor de execução do proximo processo
                 			//System.out.println(smallerPosition);   //debug 
                 			//System.out.println(smaller);			 // ^^
                 			
-                		}
+                		} 
                 		
                 	}
                 	
@@ -63,13 +63,16 @@ public class Sjf {
             				System.out.println(idle + " Processador ocioso");
             				idle++;
             			}
+            			i = idle;
+            			
+                		processesExecution = temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo
+                		averageWaitingTime = temporary.get(smallerPosition).execution + idle;      // soma ao tempo total de execução para o calculo da média	
+            		} else {
+            			
+            			processesExecution += temporary.get(smallerPosition).execution ;      // soma ao tempo de execução, o tempo do proximo processo
+                		averageWaitingTime += temporary.get(smallerPosition).execution ;      // soma ao tempo total de execução para o calculo da média	
             		}
-            		
-            		processesExecution = temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo
-            		averageWaitingTime = temporary.get(smallerPosition).execution + idle;      // soma ao tempo total de execução para o calculo da média				
-            		
-            		
-            		idle = 0;
+
 
             		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
             		p = smallerPosition;															// assume a posição atual como a menor posição encontrada
@@ -79,10 +82,15 @@ public class Sjf {
             			while(temporary.get(smallerPosition).arrivalTime > idle ) {
             				idle++;
             			}
+            			i = idle;
+                		processesExecution = temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo
+                		averageWaitingTime = temporary.get(smallerPosition).execution + idle;      // soma ao tempo total de execução para o calculo da média	
+            		} else {
+            			
+            			processesExecution += temporary.get(smallerPosition).execution ;      // soma ao tempo de execução, o tempo do proximo processo
+                		averageWaitingTime += temporary.get(smallerPosition).execution ;      // soma ao tempo total de execução para o calculo da média	
             		}
-            	
-            		processesExecution = temporary.get(0).execution + idle;      // soma ao tempo de execução, o tempo do ultimo processo
-            		averageWaitingTime = temporary.get(0).execution + idle;      // soma ao tempo total de execução para o calculo da média
+            		
             		
             		idle = 0;
             		
