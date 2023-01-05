@@ -85,7 +85,10 @@ public class Main {
                         case 8: showArrivalTime();
                         	break;
                         	
-                        case 9:
+                        case 9: showArrivalAndExecution();
+                    		break;
+                        	
+                        case 0:
                         	System.out.println("Até mais!");
                         	break;
 
@@ -93,7 +96,7 @@ public class Main {
                             System.out.println("EEE O Q? não entendi");
                             break;
                     }
-                } while (opc != 9);
+                } while (opc != 0);
             }
             opc = 0;
             for(int i = 0; i < processes.size(); i++){
@@ -124,7 +127,8 @@ public class Main {
         System.out.println("6) PRIORIDADE P");
         System.out.println("7) Mostrar o tempo de execução de cada processo");
         System.out.println("8) Mostrar o tempo de chegada de cada processo");
-        System.out.println("9) SAIR");
+        System.out.println("9) Mostrar o tempo de chegada e de execução");
+        System.out.println("0) SAIR");
 
     }
 
@@ -164,6 +168,13 @@ public class Main {
     		System.out.println("tempo de chegada do processo " + processes.get(i).id +": "+processes.get(i).arrivalTime);
     	}
     	
+    }
+    
+    public static void showArrivalAndExecution() {
+    	for(int i = 0; i < processes.size(); i++ ) {
+    		System.out.println("tempo de chegada do processo " + processes.get(i).id +": "+processes.get(i).arrivalTime);
+    		System.out.println("execução do processo " + processes.get(i).id +":         "+processes.get(i).execution);
+    	}
     }
 
 }
