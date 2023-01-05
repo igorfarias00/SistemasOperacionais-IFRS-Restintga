@@ -58,7 +58,7 @@ public class Sjf {
             		if(temporary.get(smallerPosition).arrivalTime > i ) {
             			
             			while(temporary.get(smallerPosition).arrivalTime > (idle + i) ) {
-            				System.out.println(idle + " Processador ocioso");
+            				System.out.println((idle + i) + " Processador ocioso");
             				idle++;
             			}
             			
@@ -79,6 +79,7 @@ public class Sjf {
             		if(temporary.get(smallerPosition).arrivalTime > i ) {
             			
             			while(temporary.get(smallerPosition).arrivalTime > (idle + i) ) {
+            				System.out.println((idle + i) + " Processador ocioso");
             				idle++;
             			}
             			
