@@ -99,10 +99,7 @@ public class Main {
                 } while (opc != 0);
             }
             opc = 0;
-            for(int i = 0; i < processes.size(); i++){
-                System.out.println(processes.get(i).execution);
-                System.out.println(processes.get(i).arrivalTime);
-            }
+
         } while(opc > 0);
     }
 

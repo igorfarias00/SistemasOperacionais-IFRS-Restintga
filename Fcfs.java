@@ -28,7 +28,7 @@ public class Fcfs {
             } else {                                                   // se chegou ao proximo processo
                 j++;                                                   // soma um ao contador de processos
                 processesExecution += processes.get(j).execution;      // soma ao tempo de execução, o tempo do proximo processo
-                averageWaitingTime += processes.get(j).execution;      // soma ao tempo total de execução para o calculo da média
+                averageWaitingTime += i;      // soma ao tempo total de execução para o calculo da média
 
                 System.out.println(i + ": Processo p"+ processes.get(j).id);       // imprime o passo atual de execução
             }

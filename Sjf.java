@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * 
  */
 public class Sjf {
-	int processesSize;
 	int executionTime;
     int tBurst = 0;
     int processesExecution;
@@ -29,8 +28,7 @@ public class Sjf {
     		temporary.add(processes.get(i));
     	}
     	
-    	
-    	processesSize = temporary.size();
+    
         for(int i = 0; i < temporary.size(); i++){					// executa essa laço para verificar o tempo de execução de todos os processos
             executionTime += temporary.get(i).execution;
             //System.out.println("processo "+ (i + 1)+ ": " + processes.get(i).waitingTime);
@@ -58,40 +56,42 @@ public class Sjf {
                 	}
                 	
             		if(temporary.get(smallerPosition).arrivalTime > i ) {
-            			idle = i;
-            			while(temporary.get(smallerPosition).arrivalTime > idle ) {
+            			
+            			while(temporary.get(smallerPosition).arrivalTime > (idle + i) ) {
             				System.out.println(idle + " Processador ocioso");
             				idle++;
             			}
-            			i = idle;
             			
-                		processesExecution = temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo
-                		averageWaitingTime = temporary.get(smallerPosition).execution + idle;      // soma ao tempo total de execução para o calculo da média	
+            			
+            			i += idle;
+                		processesExecution += temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo
+                			
             		} else {
             			
             			processesExecution += temporary.get(smallerPosition).execution ;      // soma ao tempo de execução, o tempo do proximo processo
-                		averageWaitingTime += temporary.get(smallerPosition).execution ;      // soma ao tempo total de execução para o calculo da média	
             		}
 
-
+            		averageWaitingTime += i;      // soma ao tempo total de execução para o calculo da média de espera
             		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
             		p = smallerPosition;															// assume a posição atual como a menor posição encontrada
+            		idle = 0;
             	} else {
             		if(temporary.get(smallerPosition).arrivalTime > i ) {
-            			idle = i;
-            			while(temporary.get(smallerPosition).arrivalTime > idle ) {
+            			
+            			while(temporary.get(smallerPosition).arrivalTime > (idle + i) ) {
             				idle++;
             			}
-            			i = idle;
-                		processesExecution = temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo
-                		averageWaitingTime = temporary.get(smallerPosition).execution + idle;      // soma ao tempo total de execução para o calculo da média	
+            			
+            			i += idle;
+                		processesExecution += temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo	
+                		idle = 0;
             		} else {
             			
             			processesExecution += temporary.get(smallerPosition).execution ;      // soma ao tempo de execução, o tempo do proximo processo
-                		averageWaitingTime += temporary.get(smallerPosition).execution ;      // soma ao tempo total de execução para o calculo da média	
+                		
             		}
             		
-            		
+            		averageWaitingTime += i;
             		idle = 0;
             		
             		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
@@ -105,7 +105,7 @@ public class Sjf {
         }
         
       
-        averageWaitingTime /= processesSize;    // realiza o calculo da média
+        averageWaitingTime /= processes.size();    // realiza o calculo da média
         
         
         System.out.println("Tempo médio de espera: " + averageWaitingTime);
