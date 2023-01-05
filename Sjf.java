@@ -9,13 +9,12 @@ public class Sjf {
 	int processesSize;
 	int executionTime;
     int tBurst = 0;
+    int arival;
     int processesExecution;
     int averageWaitingTime;
-    int idle;
     int j = 0, p = 0;
     int smallerPosition = 0;
     int smaller = 999999;
-  
 
     
 
@@ -23,7 +22,7 @@ public class Sjf {
     	processesExecution = processes.get(0).execution;
     	averageWaitingTime = 0;
     	ArrayList<Process> temporary = new ArrayList<>();
-    	idle = 0;
+    	
     	
     	for(int i = 0; i < processes.size(); i++) {
     		temporary.add(processes.get(i));
@@ -56,36 +55,17 @@ public class Sjf {
                 		}
                 		
                 	}
-                	
-            		if(temporary.get(smallerPosition).arrivalTime > i ) {
-            			idle = i;
-            			while(temporary.get(smallerPosition).arrivalTime > idle ) {
-            				System.out.println(idle + " Processador ocioso");
-            				idle++;
-            			}
-            		}
             		
-            		processesExecution = temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo
-            		averageWaitingTime = temporary.get(smallerPosition).execution + idle;      // soma ao tempo total de execução para o calculo da média				
-            		
-            		
-            		idle = 0;
+            		processesExecution += temporary.get(smallerPosition).execution;      // soma ao tempo de execução, o tempo do proximo processo
+            		averageWaitingTime += temporary.get(smallerPosition).execution;      // soma ao tempo total de execução para o calculo da média
 
             		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
             		p = smallerPosition;															// assume a posição atual como a menor posição encontrada
             	} else {
-            		if(temporary.get(smallerPosition).arrivalTime > i ) {
-            			idle = i;
-            			while(temporary.get(smallerPosition).arrivalTime > idle ) {
-            				idle++;
-            			}
-            		}
-            	
-            		processesExecution = temporary.get(0).execution + idle;      // soma ao tempo de execução, o tempo do ultimo processo
-            		averageWaitingTime = temporary.get(0).execution + idle;      // soma ao tempo total de execução para o calculo da média
-            		
-            		idle = 0;
-            		
+					  
+            		processesExecution += temporary.get(0).execution;      // soma ao tempo de execução, o tempo do ultimo processo
+            		averageWaitingTime += temporary.get(0).execution;      // soma ao tempo total de execução para o calculo da média
+
             		System.out.println(i + ": Processo p"+ temporary.get(p).id);       // imprime o passo atual de execução
             
             		
