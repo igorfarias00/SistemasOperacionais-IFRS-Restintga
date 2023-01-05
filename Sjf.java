@@ -22,7 +22,11 @@ public class Sjf {
     	processesExecution = processes.get(0).execution;
     	averageWaitingTime = 0;
     	ArrayList<Process> temporary = new ArrayList<>();
-    	temporary = processes;
+    	
+    	
+    	for(int i = 0; i < processes.size(); i++) {
+    		temporary.add(processes.get(i));
+    	}
     	
     	
     	processesSize = temporary.size();

@@ -79,15 +79,21 @@ public class Main {
                             break;
 
                         // byebye
-                        case 7:
-                            System.out.println("Até mais!");
+                        case 7: showExecution();
                             break;
+                            
+                        case 8: showArrivalTime();
+                        	break;
+                        	
+                        case 9:
+                        	System.out.println("Até mais!");
+                        	break;
 
                         default:
                             System.out.println("EEE O Q? não entendi");
                             break;
                     }
-                } while (opc != 7);
+                } while (opc != 9);
             }
             opc = 0;
             for(int i = 0; i < processes.size(); i++){
@@ -116,7 +122,9 @@ public class Main {
         System.out.println("4) ROBIN");
         System.out.println("5) PRIORIDADE ");
         System.out.println("6) PRIORIDADE P");
-        System.out.println("7) SAIR");
+        System.out.println("7) Mostrar o tempo de execução de cada processo");
+        System.out.println("8) Mostrar o tempo de chegada de cada processo");
+        System.out.println("9) SAIR");
 
     }
 
@@ -142,7 +150,21 @@ public class Main {
             }
         }
     }
-
+    
+    
+    public static void showExecution() {
+    	for(int i = 0; i < processes.size(); i++ ) {
+    		System.out.println("execução do processo " + processes.get(i).id +": "+processes.get(i).execution);
+    	}
+    	
+    } 
+    
+    public static void showArrivalTime() {
+    	for(int i = 0; i < processes.size(); i++ ) {
+    		System.out.println("tempo de chegada do processo " + processes.get(i).id +": "+processes.get(i).arrivalTime);
+    	}
+    	
+    }
 
 }
 
