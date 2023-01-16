@@ -60,7 +60,7 @@ public class Main {
 
                         // SJF P
                         case 3:
-                            System.out.println("ainda não implementado");
+                        	SjfPrior sjfPrior = new SjfPrior(processes);
                             break;
 
                         // ROBIN
