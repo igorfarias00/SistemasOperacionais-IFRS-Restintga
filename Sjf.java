@@ -1,10 +1,7 @@
 import java.util.ArrayList;
-// problemas desse código:
 
-/*
- *  ele destroi o arraylist original
- * 
- */
+//media do processo = inicio da execução - tempo de chegada
+
 public class Sjf {
 	int executionTime;
     int tBurst = 0;
@@ -85,10 +82,9 @@ public class Sjf {
             			processesExecution += temporary.get(smallerPosition).execution ;      // soma ao tempo de execução, o tempo do proximo processo
             		}
             		
-            		System.out.println("Espera: " + i);
-            		averageWaitingTime += i;      // soma ao tempo total de execução para o calculo da média de espera
-            		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
-            		p = smallerPosition;															// assume a posição atual como a menor posição encontrada
+            		//System.out.println("Espera: " + i);
+            		averageWaitingTime += i - temporary.get(smallerPosition).arrivalTime;      // soma ao tempo total de execução para o calculo da média de espera
+            		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução															// assume a posição atual como a menor posição encontrada
             		idle = 0;
             	} else {
             		if(temporary.get(smallerPosition).arrivalTime > i ) {
@@ -106,8 +102,8 @@ public class Sjf {
             			processesExecution += temporary.get(smallerPosition).execution ;      // soma ao tempo de execução, o tempo do proximo processo
                 		
             		}
-            		System.out.println("Espera: " + i);
-            		averageWaitingTime += i;
+            		//System.out.println("Espera: " + i);
+            		averageWaitingTime += i - temporary.get(smallerPosition).arrivalTime;
             		idle = 0;
             		
             		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução

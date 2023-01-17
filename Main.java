@@ -137,17 +137,15 @@ public class Main {
             for (int i = 0; i < processNum; i++) {          // de forma aleatoria
                 processes.add(new Process(true, (i+1)));
                 if(processes.size() == 1){
-                    processes.get(0).arrivalTime = 0;
+                    processes.get(0).arrivalTime = 0;		// atribui ao primeiro processo o tempo de chegada 0
                 } else {
-                    processes.get(i).arrivalTime = generator.nextInt(0,50);			// gera o tempo de chegada aleatoriamente
+                    processes.get(i).arrivalTime = generator.nextInt(1,50);			// gera o tempo de chegada aleatoriamente para os demais, entre 1 e 50
                 }
             }
-        } else if (opc == 2) {                              // opção para popular o arraylist com a quantidade seleciona
-            for (int i = 0; i < processNum; i++) {          // de forma manual
-                System.out.println("Digite o tempo de execução do processo ( p" + (i + 1) + " ): ");
+        } else if (opc == 2) {                              // opção para popular o arraylist com a quantidade selecionada
+            for (int i = 0; i < processNum; i++) {          // de forma manual              
                 processes.add(new Process(false, (i+1)));
-                System.out.println("Digite o tempo de chegada desse processo: ");
-                processes.get(i).arrivalTime = Integer.parseInt(tcl.readLine());
+
             }
         }
     }

@@ -14,13 +14,19 @@ public class Process {
     Random generator = new Random();
 
     public Process(boolean randomico, int id) throws IOException {
-        if (randomico == true) {
-            this.execution = generator.nextInt(1, 12);
+    	this.id = id;
+    	
+    	
+    	if (randomico == true) {
+            this.execution = generator.nextInt(1, 12);		// gera um tempo de execução aleatorio, entre 1 e 12
         } else {
-            this.execution = Integer.parseInt(tcl.readLine());
+        	System.out.println("Digite o tempo de execução do processo ( p" + this.id + " ): ");
+            this.execution = Integer.parseInt(tcl.readLine()); // solicita o tempo de execução
+            System.out.println("Digite o tempo de chegada desse processo: ");
+            this.arrivalTime = Integer.parseInt(tcl.readLine());
         }
         
-        this.id = id;
+        
     }
 
 }
