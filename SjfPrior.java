@@ -59,7 +59,7 @@ public class SjfPrior {
 		        			smallerPosition  = j;																			// adiciona a posição do novo processo que ira ser executado
 		        			smaller = temporary.get(j).execution;															// e seu tamanho
 		        			processesExecution += temporary.get(smallerPosition).execution ;								// e adiciona ao tempo de execução
-
+		        			
 		        			//System.out.println("Espera: " + i);										// ignorar
 		            		//averageWaitingTime += i  - temporary.get(smallerPosition).arrivalTime;													// ignorar
 		        			
@@ -72,7 +72,7 @@ public class SjfPrior {
         		if(i < processesExecution){                                				// se não chegou ao fim do tempo de execução do processo
 	                System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);        // imprime o passo atual de execução
 	                for(j =0 ; j < temporary.size(); j++) {
-	                	if(j != smallerPosition) {
+	                	if(j != smallerPosition && temporary.get(j).arrivalTime < i) {
 	                		temporary.get(j).waitingTime++;
 	                	}
 	                }
@@ -104,7 +104,7 @@ public class SjfPrior {
 	            				idle++;
 	            				
 	        	                for(j =0 ; j < temporary.size(); j++) {
-	        	                	if(j != smallerPosition) {
+	        	                	if(j != smallerPosition && temporary.get(j).arrivalTime < i) {
 	        	                		temporary.get(j).waitingTime++;
 	        	                	}
 	        	                }
@@ -125,6 +125,7 @@ public class SjfPrior {
 	            		//averageWaitingTime += i  - temporary.get(smallerPosition).arrivalTime;      // soma ao tempo total de execução para o calculo da média de espera
 	            		//System.out.println("Tempo médio de espera de P("+ temporary.get(smallerPosition).id +": " + i);
 		                
+	            		averageWaitingTime += temporary.get(smallerPosition).waitingTime;
 	            		
 	            		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
 	            		idle = 0;
@@ -137,11 +138,12 @@ public class SjfPrior {
 	            				idle++;
 	            				
 	        	                for(j =0 ; j < temporary.size(); j++) {
-	        	                	if(j != smallerPosition) {
+	        	                	if(j != smallerPosition && temporary.get(j).arrivalTime < i) {
 	        	                		temporary.get(j).waitingTime++;
 	        	                	}
 	        	                }
 	            			}
+	            			
 	            			
 	            			i += idle;
 	                		processesExecution += temporary.get(smallerPosition).execution + idle;      // soma ao tempo de execução, o tempo do proximo processo	
@@ -156,7 +158,7 @@ public class SjfPrior {
 	            		//System.out.println("Tempo médio de espera de P("+ temporary.get(smallerPosition).id +": " + i);
 	            		idle = 0;
 	            		
-	            		
+	            		averageWaitingTime += temporary.get(smallerPosition).waitingTime;
 	            		
 	            		System.out.println(i + ": Processo p"+ temporary.get(smallerPosition).id);       // imprime o passo atual de execução
 	            		
@@ -171,7 +173,8 @@ public class SjfPrior {
         }
         
 		System.out.println(temporary.get(smallerPosition).waitingTime);
-		averageWaitingTime /= processes.size();
+		
+		averageWaitingTime = (averageWaitingTime + temporary.get(smallerPosition).waitingTime) / processes.size();
         
         
         System.out.println("Tempo médio de espera: " + averageWaitingTime);
