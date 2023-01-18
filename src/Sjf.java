@@ -1,3 +1,4 @@
+package src;
 import java.util.ArrayList;
 
 //media do processo = inicio da execução - tempo de chegada

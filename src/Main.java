@@ -1,3 +1,5 @@
+package src;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,81 +38,95 @@ public class Main {
 
         int opc = 0, processNum = 3;
 
+        menuProcesses();
+        
         do {
-            menu();
+            algortihmMenu();
             opc = Integer.parseInt(tcl.readLine());
-            if(opc == 1 || opc ==2) {
-                System.out.println("quantos Processos deseja inserir");
-                processNum = Integer.parseInt(tcl.readLine());
-                populateProcesses(opc, processNum);
-                opc = 0;        // reseta a opcao do menu para continuar a execução
-            } if (opc == 0){
-                do {
-                    algortihmMenu();
-                    opc = Integer.parseInt(tcl.readLine());
-                    switch (opc) {
-                        // FCFS
-                        case 1: Fcfs fcfs= new Fcfs(processes);
-                            break;
+            switch (opc) {
+                // FCFS
+                case 1: Fcfs fcfs= new Fcfs(processes);
+                     break;
 
                         // SJF
-                        case 2:
-                            Sjf sjf = new Sjf(processes);
-                            break;
+                case 2:
+                   Sjf sjf = new Sjf(processes);
+                     break;
 
                         // SJF P
-                        case 3:
-                        	SjfPreemptivo sjfPreemp = new SjfPreemptivo(processes);
-                            break;
+                case 3:
+                   	SjfPreemptivo sjfPreemp = new SjfPreemptivo(processes);
+                     break;
 
-                        // ROBIN
-                        case 4:
-                            System.out.println("ainda não implementado");
-                            break;
+                       // ROBIN
+                case 4:
+                     System.out.println("ainda não implementado");
+                      break;
 
-                        // PRIORIDADE
-                        case 5:
-                            System.out.println("ainda não implementado");
-                            break;
+                      // PRIORIDADE
+                case 5:
+                    System.out.println("ainda não implementado");
+                      break;
 
                         // PRIORIDADE P
-                        case 6:
-                            System.out.println("ainda não implementado");
-                            break;
+                case 6:
+                       System.out.println("ainda não implementado");
+                     break;
 
-                        // byebye
-                        case 7: showExecution();
-                            break;
+                 
+                case 7: showExecution();
+                     break;
                             
-                        case 8: showArrivalTime();
-                        	break;
+                case 8: showArrivalTime();
+                     	break;
                         	
-                        case 9: showArrivalAndExecution();
-                    		break;
+                case 9: showArrivalAndExecution();
+                 		break;
+                 		
+                case 10:
+                 	processes.clear();
+                 	menuProcesses();
+                   	break;
                         	
-                        case 0:
-                        	System.out.println("Até mais!");
-                        	break;
+                case 0:
+                     	System.out.println("Até mais!");
+                       	break;
 
-                        default:
-                            System.out.println("EEE O Q? não entendi");
-                            break;
-                    }
-                } while (opc != 0);
+                    default:
+                    	System.out.println("EEE O Q? não entendi");
+                      break;
             }
-            opc = 0;
+        } while (opc != 0);
+            
+          
 
-        } while(opc > 0);
+        
     }
 
 
-    public static void menu() {
-            // niveis do menu
-            // menu - 0 - tempo de espera manual e Automatica
-            // menu - 1 - tipo de algoritmo da fila de processos
-            System.out.println("---- OPCÕES ----");
-            System.out.println("1) Atribuição Automatica.");
-            System.out.println("2) Atribuição Manual");
+
+
+
+	public static void menuProcesses() throws NumberFormatException, IOException { 
+    	int opc, processNum;
+    	BufferedReader tcl = new BufferedReader(new InputStreamReader(System.in));
+    	
+            do {
+                // niveis do menu
+                // menu - 0 - tempo de espera manual e Automatica
+                // menu - 1 - tipo de algoritmo da fila de processos
+                System.out.println("---- OPCÕES ----");
+                System.out.println("1) Atribuição Automatica.");
+                System.out.println("2) Atribuição Manual");
+                
+                opc = Integer.parseInt(tcl.readLine());
+                if(opc == 1 || opc ==2) {
+                    System.out.println("quantos Processos deseja inserir");
+                    processNum = Integer.parseInt(tcl.readLine());
+                    populateProcesses(opc, processNum);
+                    opc = 0;        // reseta a opcao do menu para continuar a execução
+                }
+             } while (opc != 0);
 
     }
 
@@ -125,6 +141,7 @@ public class Main {
         System.out.println("7) Mostrar o tempo de execução de cada processo");
         System.out.println("8) Mostrar o tempo de chegada de cada processo");
         System.out.println("9) Mostrar o tempo de chegada e de execução");
+        System.out.println("10) Refazer a lista de processsos");
         System.out.println("0) SAIR");
 
     }
