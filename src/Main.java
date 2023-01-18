@@ -72,18 +72,11 @@ public class Main {
                 case 6:
                        System.out.println("ainda não implementado");
                      break;
-
-                 
-                case 7: showExecution();
-                     break;
-                            
-                case 8: showArrivalTime();
-                     	break;
                         	
-                case 9: showArrivalAndExecution();
+                case 7: showArrivalAndExecution();
                  		break;
                  		
-                case 10:
+                case 8:
                  	processes.clear();
                  	menuProcesses();
                    	break;
@@ -138,10 +131,8 @@ public class Main {
         System.out.println("4) ROBIN");
         System.out.println("5) PRIORIDADE ");
         System.out.println("6) PRIORIDADE P");
-        System.out.println("7) Mostrar o tempo de execução de cada processo");
-        System.out.println("8) Mostrar o tempo de chegada de cada processo");
-        System.out.println("9) Mostrar o tempo de chegada e de execução");
-        System.out.println("10) Refazer a lista de processsos");
+        System.out.println("7) Mostrar o tempo de chegada e de execução");
+        System.out.println("8) Refazer a lista de processos");
         System.out.println("0) SAIR");
 
     }
