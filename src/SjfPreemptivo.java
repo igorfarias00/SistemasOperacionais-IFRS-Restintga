@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 //media do processo = inicio da execução - tempo de chegada
 
-public class SjfPrior {
+public class SjfPreemptivo {
 	int executionTime;
     int tBurst = 0;
     int processesExecution;
@@ -16,7 +16,7 @@ public class SjfPrior {
 
     
 
-    public SjfPrior(ArrayList<Process> processes){
+    public SjfPreemptivo(ArrayList<Process> processes){
     	
     	averageWaitingTime = 0;
     	ArrayList<Process> temporary = new ArrayList<>();

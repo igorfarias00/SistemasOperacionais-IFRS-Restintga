@@ -60,7 +60,7 @@ public class Main {
 
                         // SJF P
                         case 3:
-                        	SjfPrior sjfPrior = new SjfPrior(processes);
+                        	SjfPreemptivo sjfPreemp = new SjfPreemptivo(processes);
                             break;
 
                         // ROBIN
